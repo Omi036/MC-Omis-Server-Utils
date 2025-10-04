@@ -24,10 +24,9 @@ public class OSUtils {
     public OSUtils() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        modEventBus.addListener(this::commonSetup);
-
         MinecraftForge.EVENT_BUS.register(this);
 
+        LOGGER.info("Registering events");
         MinecraftForge.EVENT_BUS.register(new PlayerJoinEventHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerLeftEventHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerDeathEventHandler());
@@ -37,15 +36,10 @@ public class OSUtils {
         MinecraftForge.EVENT_BUS.register(new DetonateEventHandler());
         MinecraftForge.EVENT_BUS.register(new ClockTickEventHandler());
         MinecraftForge.EVENT_BUS.register(new CommandRegisterEventHandler());
+        LOGGER.info("Events registered successfully");
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
-
-
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("HELLO FROM COMMON SETUP");
-    }
-
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
