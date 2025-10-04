@@ -2,7 +2,9 @@ package omi.serverutils.osutils.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
+import omi.serverutils.osutils.OSUtils;
 
 public class GeneralConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -16,8 +18,7 @@ public class GeneralConfig {
 
     public static boolean tablistEnabled;
 
-    @SubscribeEvent
-    static void onLoad(final ModConfigEvent event) {
+    public static void load() {
         tablistEnabled = TABLIST_ENABLED.get();
     }
 }

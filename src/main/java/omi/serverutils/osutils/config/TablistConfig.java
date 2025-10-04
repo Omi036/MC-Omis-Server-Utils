@@ -2,7 +2,9 @@ package omi.serverutils.osutils.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
+import omi.serverutils.osutils.OSUtils;
 
 public class TablistConfig {
     static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -15,14 +17,19 @@ public class TablistConfig {
             .comment("Message on the bottom of the TabList")
             .define("tablist_footer", "Default Footer");
 
+    public static final ForgeConfigSpec.ConfigValue<Integer> TABLIST_UPDATE_RATIO = BUILDER
+            .comment("How many seconds it will wait before updating the tablist")
+            .define("tablist_update_ratio", 5);
+
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
-    public static String tablist_header;
-    public static String tablist_footer;
+    public static String tablistHeader;
+    public static String tablistFooter;
+    public static Integer tablistUpdateRatio;
 
-    @SubscribeEvent
-    static void onLoad(final ModConfigEvent event) {
-        tablist_header = TABLIST_HEADER.get();
-        tablist_footer = TABLIST_FOOTER.get();
+    public static void load() {
+        tablistHeader = TABLIST_HEADER.get();
+        tablistFooter = TABLIST_FOOTER.get();
+        tablistUpdateRatio = TABLIST_UPDATE_RATIO.get();
     }
 }

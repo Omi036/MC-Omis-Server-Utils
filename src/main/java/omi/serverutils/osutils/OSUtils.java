@@ -9,7 +9,9 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import omi.serverutils.osutils.config.GeneralConfig;
 import omi.serverutils.osutils.events.*;
+import omi.serverutils.osutils.modules.ConfigModule;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -25,19 +27,10 @@ public class OSUtils {
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        LOGGER.info("Registering events");
-        MinecraftForge.EVENT_BUS.register(new PlayerJoinEventHandler());
-        MinecraftForge.EVENT_BUS.register(new PlayerLeftEventHandler());
-        MinecraftForge.EVENT_BUS.register(new PlayerDeathEventHandler());
-        MinecraftForge.EVENT_BUS.register(new ServerChatEventHandler());
-        MinecraftForge.EVENT_BUS.register(new BlockBreakEventHandler());
-        MinecraftForge.EVENT_BUS.register(new BlockPlaceEventHandler());
-        MinecraftForge.EVENT_BUS.register(new DetonateEventHandler());
-        MinecraftForge.EVENT_BUS.register(new ClockTickEventHandler());
-        MinecraftForge.EVENT_BUS.register(new CommandRegisterEventHandler());
-        LOGGER.info("Events registered successfully");
+        ConfigModule.registerConfigFiles();
 
-        Config.register();
+        LOGGER.info("OJITO");
+        LOGGER.info(String.valueOf(GeneralConfig.tablistEnabled));
     }
 
     @SubscribeEvent
