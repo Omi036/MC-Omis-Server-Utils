@@ -1,4 +1,4 @@
-package omi.serverutils.events;
+package omi.serverutils.osutils.events;
 
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
