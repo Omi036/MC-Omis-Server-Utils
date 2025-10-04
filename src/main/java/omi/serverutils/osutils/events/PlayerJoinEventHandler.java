@@ -10,6 +10,7 @@ public class PlayerJoinEventHandler {
 
     @SubscribeEvent
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        OSUtils.LOGGER.info("OJOO");
         OSUtils.LOGGER.info(String.valueOf(GeneralConfig.tablistEnabled));
     }
 }

@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import omi.serverutils.osutils.config.GeneralConfig;
 import omi.serverutils.osutils.events.*;
@@ -25,9 +26,14 @@ public class OSUtils {
     public OSUtils() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        MinecraftForge.EVENT_BUS.register(this);
+        modEventBus.addListener(this::setup);
 
-        LOGGER.info("Registering events");
+        ConfigModule.registerConfigFiles();
+    }
+
+    private void setup(final FMLCommonSetupEvent event) {
+        LOGGER.info("Registering runtime events...");
+
         MinecraftForge.EVENT_BUS.register(new PlayerJoinEventHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerLeftEventHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerDeathEventHandler());
@@ -35,19 +41,9 @@ public class OSUtils {
         MinecraftForge.EVENT_BUS.register(new BlockBreakEventHandler());
         MinecraftForge.EVENT_BUS.register(new BlockPlaceEventHandler());
         MinecraftForge.EVENT_BUS.register(new DetonateEventHandler());
-        //MinecraftForge.EVENT_BUS.register(new ClockTickEventHandler());
         MinecraftForge.EVENT_BUS.register(new CommandRegisterEventHandler());
+        MinecraftForge.EVENT_BUS.register(new ClockTickEventHandler());
+
         LOGGER.info("Events registered successfully");
-
-        ConfigModule.registerConfigFiles();
-
-        LOGGER.info("OJITO");
-        LOGGER.info(String.valueOf(GeneralConfig.tablistEnabled));
-    }
-
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
     }
 }
