@@ -4,12 +4,12 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import omi.serverutils.osutils.OSUtils;
+import omi.serverutils.osutils.config.GeneralConfig;
 
-@Mod.EventBusSubscriber(modid = OSUtils.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerJoinEventHandler {
 
     @SubscribeEvent
-    public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-        OSUtils.LOGGER.info("Player Joined OOOO");
+    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        OSUtils.LOGGER.info(String.valueOf(GeneralConfig.tablistEnabled));
     }
 }

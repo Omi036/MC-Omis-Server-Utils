@@ -7,11 +7,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import omi.serverutils.osutils.OSUtils;
 
-@Mod.EventBusSubscriber(modid = OSUtils.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerDeathEventHandler {
 
     @SubscribeEvent
-    public static void onPlayerDeath(LivingDeathEvent event){
+    public void onPlayerDeath(LivingDeathEvent event){
         if (!(event.getEntity() instanceof Player player)) return;
 
     }

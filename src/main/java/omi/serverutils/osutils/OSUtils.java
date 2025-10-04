@@ -27,6 +27,18 @@ public class OSUtils {
 
         MinecraftForge.EVENT_BUS.register(this);
 
+        LOGGER.info("Registering events");
+        MinecraftForge.EVENT_BUS.register(new PlayerJoinEventHandler());
+        MinecraftForge.EVENT_BUS.register(new PlayerLeftEventHandler());
+        MinecraftForge.EVENT_BUS.register(new PlayerDeathEventHandler());
+        MinecraftForge.EVENT_BUS.register(new ServerChatEventHandler());
+        MinecraftForge.EVENT_BUS.register(new BlockBreakEventHandler());
+        MinecraftForge.EVENT_BUS.register(new BlockPlaceEventHandler());
+        MinecraftForge.EVENT_BUS.register(new DetonateEventHandler());
+        //MinecraftForge.EVENT_BUS.register(new ClockTickEventHandler());
+        MinecraftForge.EVENT_BUS.register(new CommandRegisterEventHandler());
+        LOGGER.info("Events registered successfully");
+
         ConfigModule.registerConfigFiles();
 
         LOGGER.info("OJITO");

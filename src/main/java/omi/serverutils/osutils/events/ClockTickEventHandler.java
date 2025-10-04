@@ -8,13 +8,12 @@ import omi.serverutils.osutils.config.GeneralConfig;
 import omi.serverutils.osutils.config.TablistConfig;
 import omi.serverutils.osutils.modules.TablistModule;
 
-@Mod.EventBusSubscriber(modid = OSUtils.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ClockTickEventHandler {
 
     public static Integer TPS = 20;
 
     @SubscribeEvent
-    public static void onTick(TickEvent.ServerTickEvent event) {
+    public void onTick(TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
 
         OSUtils.Clock++;
