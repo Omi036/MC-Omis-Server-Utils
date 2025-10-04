@@ -5,6 +5,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import omi.serverutils.osutils.OSUtils;
 import omi.serverutils.osutils.config.GeneralConfig;
 import omi.serverutils.osutils.config.TablistConfig;
+import omi.serverutils.osutils.config.WelcomeMsgConfig;
 
 public class ConfigModule {
 
@@ -21,6 +22,12 @@ public class ConfigModule {
             ModConfig.Type.COMMON,
             TablistConfig.SPEC,
             "osutils/tablist.toml"
+        );
+
+        ModLoadingContext.get().registerConfig(
+            ModConfig.Type.COMMON,
+            WelcomeMsgConfig.SPEC,
+            "osutils/welcoming.toml"
         );
     }
 }

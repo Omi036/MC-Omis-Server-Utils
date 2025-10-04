@@ -6,6 +6,7 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 import omi.serverutils.osutils.OSUtils;
 import omi.serverutils.osutils.config.GeneralConfig;
 import omi.serverutils.osutils.config.TablistConfig;
+import omi.serverutils.osutils.config.WelcomeMsgConfig;
 
 @Mod.EventBusSubscriber(modid = OSUtils.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ConfigEventHandler {
@@ -20,6 +21,11 @@ public class ConfigEventHandler {
             OSUtils.LOGGER.info("Loaded tablist config");
             TablistConfig.load();
         }
+
+        if(event.getConfig().getSpec() == WelcomeMsgConfig.SPEC) {
+            OSUtils.LOGGER.info("Loaded welcoming config");
+            WelcomeMsgConfig.load();
+        }
     }
 
     @SubscribeEvent
@@ -32,6 +38,11 @@ public class ConfigEventHandler {
         if (event.getConfig().getSpec() == TablistConfig.SPEC) {
             OSUtils.LOGGER.info("Reloaded tablist config");
             TablistConfig.load();
+        }
+
+        if(event.getConfig().getSpec() == WelcomeMsgConfig.SPEC) {
+            OSUtils.LOGGER.info("Reloaded welcoming config");
+            WelcomeMsgConfig.load();
         }
     }
 }

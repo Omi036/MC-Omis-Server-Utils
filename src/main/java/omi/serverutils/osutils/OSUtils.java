@@ -1,6 +1,7 @@
 package omi.serverutils.osutils;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,16 +23,19 @@ public class OSUtils {
     public static final String MODID = "osutils";
     public static int Clock = 0;
     public static final Logger LOGGER = LogUtils.getLogger();
+    public static MinecraftServer Server;
 
     public OSUtils() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::setup);
+        MinecraftForge.EVENT_BUS.addListener(this::serverSetup);
 
         ConfigModule.registerConfigFiles();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+
         LOGGER.info("Registering runtime events...");
 
         MinecraftForge.EVENT_BUS.register(new PlayerJoinEventHandler());
@@ -45,5 +49,10 @@ public class OSUtils {
         MinecraftForge.EVENT_BUS.register(new ClockTickEventHandler());
 
         LOGGER.info("Events registered successfully");
+    }
+
+    private void serverSetup(ServerStartingEvent event) {
+        LOGGER.info("Server starting");
+        OSUtils.Server = event.getServer();
     }
 }
