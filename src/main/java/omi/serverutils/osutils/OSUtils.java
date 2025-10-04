@@ -18,7 +18,7 @@ public class OSUtils {
 
     public static final String MODID = "osutils";
     public static int Clock = 0;
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public OSUtils() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -37,7 +37,7 @@ public class OSUtils {
         MinecraftForge.EVENT_BUS.register(new CommandRegisterEventHandler());
         LOGGER.info("Events registered successfully");
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        Config.register();
     }
 
     @SubscribeEvent
