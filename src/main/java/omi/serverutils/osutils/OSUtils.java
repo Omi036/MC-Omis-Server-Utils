@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import omi.serverutils.events.*;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -17,6 +18,7 @@ import org.slf4j.Logger;
 public class OSUtils {
 
     public static final String MODID = "osutils";
+    public static int Clock = 0;
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public OSUtils() {
@@ -25,6 +27,16 @@ public class OSUtils {
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
+
+        MinecraftForge.EVENT_BUS.register(new PlayerJoinEventHandler());
+        MinecraftForge.EVENT_BUS.register(new PlayerLeftEventHandler());
+        MinecraftForge.EVENT_BUS.register(new PlayerDeathEventHandler());
+        MinecraftForge.EVENT_BUS.register(new ServerChatEventHandler());
+        MinecraftForge.EVENT_BUS.register(new BlockBreakEventHandler());
+        MinecraftForge.EVENT_BUS.register(new BlockPlaceEventHandler());
+        MinecraftForge.EVENT_BUS.register(new DetonateEventHandler());
+        MinecraftForge.EVENT_BUS.register(new ClockTickEventHandler());
+        MinecraftForge.EVENT_BUS.register(new CommandRegisterEventHandler());
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
