@@ -3,10 +3,7 @@ package omi.serverutils.osutils.modules;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import omi.serverutils.osutils.OSUtils;
-import omi.serverutils.osutils.config.BetterChat;
-import omi.serverutils.osutils.config.GeneralConfig;
-import omi.serverutils.osutils.config.TablistConfig;
-import omi.serverutils.osutils.config.WelcomeMsgConfig;
+import omi.serverutils.osutils.config.*;
 
 public class ConfigModule {
 
@@ -35,6 +32,12 @@ public class ConfigModule {
             ModConfig.Type.COMMON,
             BetterChat.SPEC,
             "osutils/betterchat.toml"
+        );
+
+        ModLoadingContext.get().registerConfig(
+            ModConfig.Type.COMMON,
+            POPConfig.SPEC,
+            "osutils/pop.toml"
         );
     }
 }

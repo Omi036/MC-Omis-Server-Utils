@@ -4,10 +4,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import omi.serverutils.osutils.OSUtils;
-import omi.serverutils.osutils.config.BetterChat;
-import omi.serverutils.osutils.config.GeneralConfig;
-import omi.serverutils.osutils.config.TablistConfig;
-import omi.serverutils.osutils.config.WelcomeMsgConfig;
+import omi.serverutils.osutils.config.*;
 
 @Mod.EventBusSubscriber(modid = OSUtils.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ConfigEventHandler {
@@ -32,6 +29,11 @@ public class ConfigEventHandler {
             OSUtils.LOGGER.info("Loaded betterchat config");
             BetterChat.load();
         }
+
+        if(event.getConfig().getSpec() == POPConfig.SPEC) {
+            OSUtils.LOGGER.info("Loaded pop config");
+            POPConfig.load();
+        }
     }
 
     @SubscribeEvent
@@ -54,6 +56,11 @@ public class ConfigEventHandler {
         if(event.getConfig().getSpec() == BetterChat.SPEC) {
             OSUtils.LOGGER.info("Reloaded betterchat config");
             BetterChat.load();
+        }
+
+        if(event.getConfig().getSpec() == POPConfig.SPEC) {
+            OSUtils.LOGGER.info("Reloaded pop config");
+            POPConfig.load();
         }
     }
 }
