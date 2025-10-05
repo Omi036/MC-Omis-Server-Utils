@@ -17,27 +17,11 @@ public class TablistModule {
         List<ServerPlayer> players = server.getPlayerList().getPlayers();
 
         for (ServerPlayer player : players) {
-            String ping = String.valueOf(player.latency);
-            String name = player.getName().getString();
-            String ip = player.getIpAddress();
-            String health = String.valueOf(Math.round(player.getHealth()));
-            String playerCount = String.valueOf(server.getPlayerList().getPlayerCount());
+            String headerContent = ComponentParserModule.parseUserString(TablistConfig.tablistHeader, player);
+            headerContent = headerContent.replaceAll("(?<!\\\\)&","§");
 
-            String headerContent = TablistConfig.tablistHeader
-                .replaceAll("(?<!\\\\)&","§")
-                .replaceAll("\\{player_ping}", ping)
-                .replaceAll("\\{player_name}", name)
-                .replaceAll("\\{player_ip}", ip)
-                .replaceAll("\\{player_count}", playerCount)
-                .replaceAll("\\{player_health}", health);
-
-            String footerContent = TablistConfig.tablistFooter
-                .replaceAll("(?<!\\\\)&","§")
-                .replaceAll("\\{player_ping}", ping)
-                .replaceAll("\\{player_name}", name)
-                .replaceAll("\\{player_ip}", ip)
-                .replaceAll("\\{player_count}", playerCount)
-                .replaceAll("\\{player_health}", health);
+            String footerContent = ComponentParserModule.parseUserString(TablistConfig.tablistFooter, player);
+            footerContent = footerContent.replaceAll("(?<!\\\\)&","§");
 
             Component header = Component.literal(headerContent);
             Component footer = Component.literal(footerContent);
