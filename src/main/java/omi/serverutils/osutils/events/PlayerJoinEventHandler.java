@@ -9,6 +9,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import omi.serverutils.osutils.OSUtils;
 import omi.serverutils.osutils.config.GeneralConfig;
+import omi.serverutils.osutils.config.POPConfig;
 import omi.serverutils.osutils.config.WelcomeMsgConfig;
 import omi.serverutils.osutils.modules.ComponentParserModule;
 
@@ -20,7 +21,13 @@ public class PlayerJoinEventHandler {
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
         ServerPlayer player = (ServerPlayer) event.getEntity();
 
-        // If welcoming is enabled
+        // POP Module
+        if(GeneralConfig.popEnabled && POPConfig.popDeopOnJoin){
+            OSUtils.Server.getPlayerList().deop(player.getGameProfile());
+        }
+
+
+        // Welcoming Module
         if(GeneralConfig.welcomingEnabled) {
 
 
