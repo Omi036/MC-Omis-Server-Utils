@@ -12,7 +12,7 @@ public class WelcomeMsgConfig {
 
     public static final ForgeConfigSpec.ConfigValue<String> WELCOME_SOUND = BUILDER
             .comment("What sounds when a user joins (in resourcepack format")
-            .define("welcome_sound", "minecraft:entity.player.levelup");
+            .define("welcome_sound", "minecraft:ui.toast.challenge_complete");
 
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 

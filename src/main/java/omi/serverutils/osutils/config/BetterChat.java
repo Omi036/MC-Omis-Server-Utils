@@ -13,14 +13,20 @@ public class BetterChat {
             .comment("What to show on OP message (json format)")
             .define("op_msg_template", "[{ \"text\": \"{hour} [OP] {player_name}: {message}\" }]");
 
+    public static final ForgeConfigSpec.ConfigValue<String> MSG_SOUND = BUILDER
+            .comment("What may sound when player chats (resourcepack format) (empty for none)")
+            .define("msg_sound", "minecraft:block.amethyst_block.resonate");
+
 
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static String userMessageTemplate;
     public static String opMessageTemplate;
+    public static String messageSound;
 
     public static void load() {
         userMessageTemplate = USER_MSG_TEMPLATE.get();
         opMessageTemplate = OP_MSG_TEMPLATE.get();
+        messageSound = MSG_SOUND.get();
     }
 }
