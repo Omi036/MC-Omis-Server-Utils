@@ -26,17 +26,23 @@ public class GeneralConfig {
             .comment("Enable passworded OP command, along with more features (see conf file)")
             .define("pop_enabled", true);
 
+    public static final ForgeConfigSpec.ConfigValue<Boolean> SEQUENCES_ENABLED = BUILDER
+            .comment("Enable command sequences")
+            .define("sequences_enabled", true);
+
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static boolean tablistEnabled;
     public static boolean welcomingEnabled;
     public static boolean betterChatEnabled;
     public static boolean popEnabled;
+    public static boolean sequencesEnabled;
 
     public static void load() {
         tablistEnabled = TABLIST_ENABLED.get();
         welcomingEnabled = WELCOMING_ENABLED.get();
         betterChatEnabled = BETTER_CHAT_ENBALED.get();
         popEnabled = POP_ENABLED.get();
+        sequencesEnabled = SEQUENCES_ENABLED.get();
     }
 }
