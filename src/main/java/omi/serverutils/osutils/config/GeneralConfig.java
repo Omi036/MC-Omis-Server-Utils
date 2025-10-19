@@ -30,6 +30,10 @@ public class GeneralConfig {
             .comment("Enable command sequences")
             .define("sequences_enabled", true);
 
+    public static final ForgeConfigSpec.ConfigValue<Boolean> REGIONS_ENABLED = BUILDER
+            .comment("Enable world protected regions")
+            .define("regions_enabled", true);
+
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static boolean tablistEnabled;
@@ -37,6 +41,7 @@ public class GeneralConfig {
     public static boolean betterChatEnabled;
     public static boolean popEnabled;
     public static boolean sequencesEnabled;
+    public static boolean regionsEnabled;
 
     public static void load() {
         tablistEnabled = TABLIST_ENABLED.get();
@@ -44,5 +49,6 @@ public class GeneralConfig {
         betterChatEnabled = BETTER_CHAT_ENBALED.get();
         popEnabled = POP_ENABLED.get();
         sequencesEnabled = SEQUENCES_ENABLED.get();
+        regionsEnabled = REGIONS_ENABLED.get();
     }
 }

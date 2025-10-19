@@ -8,8 +8,10 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import omi.serverutils.osutils.config.GeneralConfig;
 import omi.serverutils.osutils.events.*;
 import omi.serverutils.osutils.modules.ConfigModule;
+import omi.serverutils.osutils.modules.RegionsModule;
 import omi.serverutils.osutils.modules.SequenceModule;
 import org.slf4j.Logger;
 
@@ -44,6 +46,7 @@ public class OSUtils {
         MinecraftForge.EVENT_BUS.register(new PlayerLeftEventHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerDeathEventHandler());
         MinecraftForge.EVENT_BUS.register(new ServerChatEventHandler());
+        MinecraftForge.EVENT_BUS.register(new BlockInteractEventHandler());
         MinecraftForge.EVENT_BUS.register(new BlockBreakEventHandler());
         MinecraftForge.EVENT_BUS.register(new BlockPlaceEventHandler());
         MinecraftForge.EVENT_BUS.register(new DetonateEventHandler());
@@ -65,7 +68,12 @@ public class OSUtils {
         if(!sequencesDirectory.exists()) sequencesDirectory.mkdirs();
         if(!dataDirectory.exists()) dataDirectory.mkdirs();
 
+        if(GeneralConfig.regionsEnabled) RegionsModule.loadRegions();
+
 
         SequenceModule.loadSequences(sequencesDirectory);
     }
+
+
+
 }
